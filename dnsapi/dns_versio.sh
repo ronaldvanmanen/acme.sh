@@ -115,8 +115,7 @@ _get_root() {
         #not valid
         return 1
       fi
-
-      hostedzone="$(echo "$response" | _egrep_o "{.*\"domain\":\s*\"$h\".*}")"
+      hostedzone="$(echo "$response" | _egrep_o "{.*\"domain\":\s*\"$h\"")"
       if [ "$hostedzone" ]; then
         _sub_domain=$(printf "%s" "$domain" | cut -d . -f 1-$p)
         _domain=$h
