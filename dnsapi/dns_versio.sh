@@ -19,8 +19,8 @@ dns_versio_add() {
   fi
 
   #save the credentials to the account conf file.
-  _saveaccountconf_mutable Versio_Username  "$Versio_Username"
-  _saveaccountconf_mutable Versio_Password  "$Versio_Password"
+  _saveaccountconf_mutable VERSIO_Username  "$VERSIO_Username"
+  _saveaccountconf_mutable VERSIO_Password  "$VERSIO_Password"
 
   _debug "First detect the root zone"
   if ! _get_root "$fulldomain"; then
@@ -160,7 +160,7 @@ _versio_rest() {
   _debug ep "$ep"
 
   VERSIO_API_URL="https://www.versio.nl/api/v1"
-  VERSIO_CREDENTIALS_BASE64=$(printf "%s:%s" "$Versio_Username" "$Versio_Password" | openssl enc -base64)
+  VERSIO_CREDENTIALS_BASE64=$(printf "%s:%s" "$VERSIO_Username" "$VERSIO_Password" | openssl enc -base64)
 
   export _H1="Accept: application/json"
   export _H2="Content-Type: application/json"
@@ -192,18 +192,18 @@ _versio_rest() {
 
 #parameters: []
 #returns:
-#  Versio_Username
-#  Versio_Password
+#  VERSIO_Username
+#  VERSIO_Password
 _get_credentials() {
-  Versio_Username="${Versio_Username:-$(_readaccountconf_mutable Versio_Username)}"
-  Versio_Password="${Versio_Password:-$(_readaccountconf_mutable Versio_Password)}"
-  if [ -z "$Versio_Username" ] || [ -z "$Versio_Password" ]; then
-    Versio_Username=""
-    Versio_Password=""
+  VERSIO_Username="${VERSIO_Username:-$(_readaccountconf_mutable VERSIO_Username)}"
+  VERSIO_Password="${VERSIO_Password:-$(_readaccountconf_mutable VERSIO_Password)}"
+  if [ -z "$VERSIO_Username" ] || [ -z "$VERSIO_Password" ]; then
+    VERSIO_Username=""
+    VERSIO_Password=""
     _err "You don't specify Versio email address and/or password yet."
     _err "Example:"
-    _err "export Versio_Username=[email address]"
-    _err "export Versio_Password=[password]"
+    _err "export VERSIO_Username=[email address]"
+    _err "export VERSIO_Password=[password]"
     return 1
   fi
   return 0
