@@ -19,8 +19,8 @@ dns_versio_add() {
   fi
 
   #save the credentials to the account conf file.
-  _saveaccountconf_mutable VERSIO_Username  "$VERSIO_Username"
-  _saveaccountconf_mutable VERSIO_Password  "$VERSIO_Password"
+  _saveaccountconf_mutable VERSIO_Username "$VERSIO_Username"
+  _saveaccountconf_mutable VERSIO_Password "$VERSIO_Password"
 
   _debug "First detect the root zone"
   if ! _get_root "$fulldomain"; then
@@ -175,18 +175,18 @@ _versio_rest() {
   fi
 
   case $? in
-  0)
-    _debug response "$response"
-    return 0
-    ;;
-  6)
-    _err "Authentication failure. Check your Versio email address and password"
-    return 1
-    ;;
-  *)
-    _err "Unknown error"
-    return 1
-    ;;
+    0)
+      _debug response "$response"
+      return 0
+      ;;
+    6)
+      _err "Authentication failure. Check your Versio email address and password"
+      return 1
+      ;;
+    *)
+      _err "Unknown error"
+      return 1
+      ;;
   esac
 }
 
