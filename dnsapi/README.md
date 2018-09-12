@@ -898,7 +898,6 @@ acme.sh --issue --dns dns_euserv -d example.com -d *.example.com --insecure
 The `EUSERV_Username` and `EUSERV_Password` will be saved in `~/.acme.sh/account.conf` and will be reused when needed.
 
 Please report any issues to https://github.com/initit/acme.sh or to <github@initit.de>
-<<<<<<< HEAD
 
 ## 48. Use DNSPod.com domain API to automatically issue cert
 
