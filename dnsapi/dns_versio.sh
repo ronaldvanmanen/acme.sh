@@ -38,8 +38,6 @@ dns_versio_add() {
   fi
 
   _debug "orginal dnsrecords" "$_dns_records"
-  _delete_dns_record "TXT" "$fulldomain."
-  _debug "dnsrecords after deleted old record" "$_dns_records"
   _add_dns_record "TXT" "$fulldomain" "\\\"$txtvalue\\\"" 0 300
   _debug "dnsrecords after add record" "{\"dns_records\":[$_dns_records]}"
 
